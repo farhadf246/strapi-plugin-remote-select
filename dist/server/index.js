@@ -25168,6 +25168,7 @@ const OptionsProxyService = ({ strapi: strapi2 }) => ({
       ...config2.fetch.body ? { body: this.replaceVariables(config2.fetch.body) } : {}
     });
     const response = await res.json();
+    console.log(response);
     return this.parseOptions(response, config2.mapping);
   },
   /**
