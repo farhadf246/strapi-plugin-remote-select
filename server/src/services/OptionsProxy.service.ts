@@ -18,11 +18,12 @@ export const OptionsProxyService = ({ strapi }: { strapi: Core.Strapi }) => ({
     const res = await fetch(this.replaceVariables(config.fetch.url), {
       method: config.fetch.method,
       headers: this.parseStringHeaders(config.fetch.headers),
-      ...(config.fetch.body ? {body: this.replaceVariables(config.fetch.body)} : {}),
+      ...(config.fetch.body ? { body: this.replaceVariables(config.fetch.body) } : {}),
     });
 
     const response = await res.json();
 
+    console.log(this.parseOptions(response, config.mapping), 'parseOptions');
     return this.parseOptions(response, config.mapping);
   },
 
@@ -108,6 +109,8 @@ export const OptionsProxyService = ({ strapi }: { strapi: Core.Strapi }) => ({
           label,
         };
       });
+
+    console.log(preparedOptionsArray, 'preparedOptionsArray');
 
     const uniqueValuesOptionsMap: Map<string, SearchableRemoteSelectValue> =
       preparedOptionsArray.reduce(
