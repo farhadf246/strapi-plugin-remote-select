@@ -23,8 +23,6 @@ export const OptionsProxyService = ({ strapi }: { strapi: Core.Strapi }) => ({
 
     const response = await res.json();
 
-    console.log(response);
-
     return this.parseOptions(response, config.mapping);
   },
 
@@ -84,6 +82,7 @@ export const OptionsProxyService = ({ strapi }: { strapi: Core.Strapi }) => ({
      * Query options for mapping JSON response.
      */
     const options = query(response, mappingConfig.sourceJsonPath || '$');
+    console.log(options);
 
     /**
      * Filter and map options array to prepare options with value and label.

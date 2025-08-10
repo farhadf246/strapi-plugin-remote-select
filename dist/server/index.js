@@ -25168,7 +25168,6 @@ const OptionsProxyService = ({ strapi: strapi2 }) => ({
       ...config2.fetch.body ? { body: this.replaceVariables(config2.fetch.body) } : {}
     });
     const response = await res.json();
-    console.log(response);
     return this.parseOptions(response, config2.mapping);
   },
   /**
@@ -25211,6 +25210,7 @@ const OptionsProxyService = ({ strapi: strapi2 }) => ({
    */
   parseOptions(response, mappingConfig) {
     const options = jsonpath.query(response, mappingConfig.sourceJsonPath || "$");
+    console.log(options);
     const preparedOptionsArray = options.filter((item) => item !== void 0 && item !== null).map((option) => {
       if (typeof option !== "object") {
         return {
