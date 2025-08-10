@@ -23,7 +23,6 @@ export const OptionsProxyService = ({ strapi }: { strapi: Core.Strapi }) => ({
 
     const response = await res.json();
 
-    console.log(this.parseOptions(response, config.mapping), 'parseOptions');
     return this.parseOptions(response, config.mapping);
   },
 
@@ -83,7 +82,7 @@ export const OptionsProxyService = ({ strapi }: { strapi: Core.Strapi }) => ({
      * Query options for mapping JSON response.
      */
     const options = query(response, mappingConfig.sourceJsonPath || '$');
-    console.log(options);
+    console.log(options, 'options');
 
     /**
      * Filter and map options array to prepare options with value and label.
@@ -94,6 +93,7 @@ export const OptionsProxyService = ({ strapi }: { strapi: Core.Strapi }) => ({
     const preparedOptionsArray = options
       .filter((item: any) => item !== undefined && item !== null)
       .map((option: any) => {
+        console.log(option, option);
         if (typeof option !== 'object') {
           return {
             value: option,
@@ -111,6 +111,7 @@ export const OptionsProxyService = ({ strapi }: { strapi: Core.Strapi }) => ({
       });
 
     console.log(preparedOptionsArray, 'preparedOptionsArray');
+    console.log(mappingConfig, 'mappingConfig');
 
     const uniqueValuesOptionsMap: Map<string, SearchableRemoteSelectValue> =
       preparedOptionsArray.reduce(
