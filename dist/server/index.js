@@ -25209,7 +25209,7 @@ const OptionsProxyService = ({ strapi: strapi2 }) => ({
    * @return {SearchableRemoteSelectValue[]} An array of unique options with `value` and `label` properties.
    */
   parseOptions(response, mappingConfig) {
-    const options = jsonpath.query(response, mappingConfig.sourceJsonPath || "$");
+    const options = jsonpath.query(response, mappingConfig.sourceJsonPath || "$").flat();
     const preparedOptionsArray = options.filter((item) => item !== void 0 && item !== null).map((option) => {
       if (typeof option !== "object") {
         console.log("!== object");
