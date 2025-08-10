@@ -25212,7 +25212,6 @@ const OptionsProxyService = ({ strapi: strapi2 }) => ({
     const options = jsonpath.query(response, mappingConfig.sourceJsonPath || "$").flat();
     const preparedOptionsArray = options.filter((item) => item !== void 0 && item !== null).map((option) => {
       if (typeof option !== "object") {
-        console.log("!== object");
         return {
           value: option,
           label: option
@@ -25225,8 +25224,6 @@ const OptionsProxyService = ({ strapi: strapi2 }) => ({
         label
       };
     });
-    console.log(preparedOptionsArray, "preparedOptionsArray");
-    console.log(mappingConfig, "mappingConfig");
     const uniqueValuesOptionsMap = preparedOptionsArray.reduce(
       (store, option) => {
         if (!store.has(option.value)) {
@@ -25249,8 +25246,6 @@ const OptionsProxyService = ({ strapi: strapi2 }) => ({
    */
   getOptionItem(rawOption, jsonPath) {
     const value = jsonpath.query(rawOption, jsonPath || "$", 1)?.[0];
-    console.log(rawOption, "rawOption");
-    console.log(value, "value");
     if (typeof value !== "string") {
       if (typeof value === "number") {
         return value.toString();

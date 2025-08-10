@@ -93,7 +93,6 @@ export const OptionsProxyService = ({ strapi }: { strapi: Core.Strapi }) => ({
       .filter((item: any) => item !== undefined && item !== null)
       .map((option: any) => {
         if (typeof option !== 'object') {
-          console.log('!== object');
           return {
             value: option,
             label: option,
@@ -108,9 +107,6 @@ export const OptionsProxyService = ({ strapi }: { strapi: Core.Strapi }) => ({
           label,
         };
       });
-
-    console.log(preparedOptionsArray, 'preparedOptionsArray');
-    console.log(mappingConfig, 'mappingConfig');
 
     const uniqueValuesOptionsMap: Map<string, SearchableRemoteSelectValue> =
       preparedOptionsArray.reduce(
@@ -141,8 +137,6 @@ export const OptionsProxyService = ({ strapi }: { strapi: Core.Strapi }) => ({
   getOptionItem(rawOption: any, jsonPath?: string): string {
     const value = query(rawOption, jsonPath || '$', 1)?.[0];
 
-    console.log(rawOption, 'rawOption');
-    console.log(value, 'value');
     if (typeof value !== 'string') {
       if (typeof value === 'number') {
         return value.toString();
