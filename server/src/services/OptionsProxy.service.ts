@@ -23,6 +23,8 @@ export const OptionsProxyService = ({ strapi }: { strapi: Core.Strapi }) => ({
 
     const response = await res.json();
 
+    console.log(response);
+
     return this.parseOptions(response, config.mapping);
   },
 
